@@ -126,7 +126,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - build_variant: "mt7621"
+          - build_variant: "mt7628"
             targets: "MI-RA75"
     steps:
       - uses: actions/checkout@v2
