@@ -174,19 +174,18 @@ jobs:
           draft: false
           prerelease: false
           
-      - name: Start build
-        run: |
-          cd $build_dir/trunk
-          for m in $targets; do fakeroot ./build_firmware_ci $m; \
-          if [ $? = 0 ]; then cp -f images/*.trx $images_dir/$m.trx; else exit 1; fi; \
-          ./clear_tree_simple >/dev/null 2>&1; done
-      - name: Upload MI-RA75
-        id: upload-release-asset-MI-RA75
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Start build firmware
+        run: |                        
+          cd $build_dir
+          for m in $targets; do fakeroot sudo make $m; \
+          if [ $? = 0 ]; then cp -f $work_dir/images/*.trx $images_dir/vipshmily_3.4_kvr_${m}_$TAG_ANME.trx; else exit 1; fi; done; \
+      - uses: actions/upload-artifact@main
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /opt/images/MI-RA75.trx
-          asset_name: MI-RA75_${{ env.build_date }}_${{ env.build_version }}_VIP.trx
-          asset_content_type: application/bin
+          name: vipshmily_3.4_kvr_${{ env.build_variant }}
+          path: ${{ env.images_dir }}
+      - uses: ncipollo/release-action@main
+        with:
+          commit: ${{ github.sha }}
+          tag: ${{ env.TAG_ANME }}
+          artifacts: "${{ env.images_dir }}/*.trx"
+          allowUpdates: true
