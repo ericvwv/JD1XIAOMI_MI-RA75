@@ -150,10 +150,8 @@ jobs:
           cd $build_dir
           if [ -f ./trunk/tools/shellcheck.sh ]; then sh ./trunk/tools/shellcheck.sh; fi
       - name: Prepare toolchain
-        run: |
-          cd $build_dir/toolchain-mipsel
-          sh dl_toolchain.sh
-          
+        run: |                        
+          mkdir -p $images_dir
       - name: Modify configs
         run: |
           cd $build_dir/trunk/configs/templates
