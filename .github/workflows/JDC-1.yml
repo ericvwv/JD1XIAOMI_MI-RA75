@@ -1,6 +1,9 @@
-name: Budil JDC-1
+name: Build Padavan vipshmily/Padavan-3.4-KVR
 
-on: 
+# Controls when the action will run. 
+on:
+#  schedule:
+#    - cron: "0 2 * * *"
   push:
     branches:
       - master
