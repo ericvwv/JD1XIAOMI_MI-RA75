@@ -14,7 +14,7 @@ env:
   images_dir: /opt/images                                     
   work_dir: /opt/padavan/trunk                              
   config_dir: /opt/padavan/trunk/configs/templates             
-  src_git: https://github.com/minax007/Padavan-3.4-KVR.git     
+  src_git: https://github.com/vipshmily/Padavan-3.4-KVR.git     
   
 jobs:
   build:
