@@ -25,8 +25,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - build_variant: "mt7628"
-            targets: "MI-RA75"
+          - build_variant: "mt7621"
+            targets: "JDC-1"
     steps:
       - uses: actions/checkout@main    
       - uses: hendrikmuhs/ccache-action@main
@@ -62,8 +62,8 @@ jobs:
           echo "CONFIG_FIRMWARE_INCLUDE_NPC=n" >> $m.config 
           echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=n" >> $m.config 
           echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=n" >> $m.config 
-          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=n" >> $m.config 
-          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=n" >> $m.config
+          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y" >> $m.config 
+          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=y" >> $m.config
           echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> $m.config 
           echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> $m.config 
           echo "CONFIG_FIRMWARE_INCLUDE_CLOUDFLAREDDNS=n" >> $m.config 
